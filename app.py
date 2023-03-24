@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 import json
 import os.path
 #from werkzeug import secure_filename
 
 
 app = Flask(__name__)
-
+app.secret_key = "hgdjshy35471763hge89jgv?!#2"
 
 @app.route("/")
 def home():
@@ -23,7 +23,7 @@ def your_url():
                 urls = json.load(urls_file)
 
         if request.form["code"] in urls.keys():
-            #flash("That short name has already been taken. Please select another name.")
+            flash("That short name has already been taken. Please select another name.")
             return redirect(url_for("home"))
 
 
