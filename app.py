@@ -20,7 +20,7 @@ def your_url():
                 urls = json.load(urls_file)
 
         if request.form["code"] in urls.keys():
-            flash("That short name has already been taken. Please select another name.")
+            flash("That abridge name has already been taken. Please select another name.")
             return redirect(url_for("home"))
 
         if "url" in request.form.keys():
@@ -28,7 +28,7 @@ def your_url():
         else:
             f = request.files["file"]
             full_name = request.form["code"] + secure_filename(f.filename)
-            f.save("/home/pablo/Dev/py/url_abridge/" + full_name)
+            f.save("/home/pablo/Dev/py/url_abridge/static/user_data/" + full_name)
             urls[request.form["code"]] = {"file":full_name}
 
 
@@ -46,4 +46,8 @@ def redirect_to_url(code):
             urls = json.load(urls_file)
             if code in urls.keys():
                 if "url" in urls[code].keys():
-                    return redirect(urls[code]["url"]) 
+                    return redirect(urls[code]["url"])
+                else:
+                    return redirect(url_for("static", filename="user_data/" + urls[code]["file"]))
+
+
