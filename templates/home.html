@@ -1,12 +1,18 @@
+<!--Extends block and base templates-->
+
+{% extends "base.html" %}
+
+{% block title %}URL Abridge{% endblock %}
+
+
+{% block main %}
+
+
 <!--Passing data into Flask apps with forms-->
 
 <h1>URL Abridge</h1>
 
 <!--Heads-up users with a notification-->
-
-{% for message in get_flashed_messages() %}
-<h2>{{ message }}</h2>
-{% endfor %}
 
 <form action="your-url" method="post">
   <label for="url">Website URL</label>
@@ -41,3 +47,5 @@
 </ul>
 
 {% endif %}
+
+{% endblock %}
